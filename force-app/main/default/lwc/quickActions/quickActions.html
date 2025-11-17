@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Quick Actions" icon-name="standard:task">
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-gutters_small">
+                <template for:each={quickActions} for:item="action">
+                    <div key={action.id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <button 
+                            class="action-button slds-button slds-button_stretch"
+                            data-object={action.objectApiName}
+                            onclick={handleQuickAction}>
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <div class="slds-col slds-m-right_small">
+                                    <lightning-icon 
+                                        icon-name={action.icon} 
+                                        size="small"
+                                        class="action-icon">
+                                    </lightning-icon>
+                                </div>
+                                <div class="slds-col slds-text-align_left">
+                                    <div class="slds-text-heading_small">{action.label}</div>
+                                    <div class="slds-text-body_small slds-text-color_weak">{action.description}</div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,116 @@
+<template>
+    <lightning-card title="Team Shipments" icon-name="custom:custom18">
+        <div slot="actions">
+            <div class="slds-grid slds-grid_vertical-align-center slds-gutters_x-small">
+                <div class="slds-col">
+                    <lightning-combobox
+                        name="statusFilter"
+                        label="Filter by Status"
+                        value={selectedFilter}
+                        placeholder="Select Status"
+                        options={filterOptions}
+                        onchange={handleFilterChange}
+                        variant="label-hidden">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col">
+                    <lightning-button 
+                        label="View All" 
+                        onclick={handleViewAll}
+                        class="view-all-button">
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-card__body slds-card__body_inner">
+            <!-- Loading State -->
+            <template lwc:if={isLoading}>
+                <div class="slds-text-align_center slds-p-vertical_medium">
+                    <lightning-spinner alternative-text="Loading shipments..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Shipments Table -->
+            <template lwc:elseif={hasShipments}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Shipment">Shipment #</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Agent">Assigned Agent</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Status">Status</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Departure">Departure</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="ETA">ETA</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Method">Method</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Actions">Actions</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={shipments} for:item="shipment">
+                            <tr key={shipment.Id} class="slds-hint-parent shipment-row">
+                                <td data-label="Shipment">
+                                    <div class="slds-truncate" title={shipment.Name}>
+                                        <strong>{shipment.Name}</strong>
+                                    </div>
+                                </td>
+                                <td data-label="Agent">
+                                    <div class="slds-truncate" title={shipment.agentName}>
+                                        {shipment.agentName}
+                                    </div>
+                                </td>
+                                <td data-label="Status">
+                                    <span class={shipment.statusClass}>{shipment.Status__c}</span>
+                                </td>
+                                <td data-label="Departure">
+                                    <div class="slds-truncate">{shipment.formattedDate}</div>
+                                </td>
+                                <td data-label="ETA">
+                                    <div class="slds-truncate">{shipment.formattedETA}</div>
+                                </td>
+                                <td data-label="Method">
+                                    <div class="slds-truncate">{shipment.Shipping_Method__c}</div>
+                                </td>
+                                <td data-label="Actions">
+                                    <lightning-button-icon 
+                                        icon-name="utility:preview" 
+                                        variant="border-filled"
+                                        alternative-text="View shipment"
+                                        data-id={shipment.Id}
+                                        onclick={handleViewShipment}
+                                        class="action-button">
+                                    </lightning-button-icon>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- Empty State -->
+            <template lwc:else>
+                <div class="slds-text-align_center slds-p-vertical_medium">
+                    <lightning-icon 
+                        icon-name="custom:custom18" 
+                        size="large"
+                        class="slds-m-bottom_small empty-icon">
+                    </lightning-icon>
+                    <p class="slds-text-body_regular slds-text-color_weak">No shipments found</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

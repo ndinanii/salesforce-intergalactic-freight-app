@@ -1,10 +1,36 @@
-# Intergalactic Freight & Trade Corp: End-to-End Logistics App
+# Intergalactic Freight & Trade Corp: Fullstack Logistics Solution
 
-This project is a complete Salesforce solution for Intergalactic Freight & Trade Corp., a company managing cargo shipments, customs, and agent communications. The application covers data modeling, automation, Apex, UI, AI, and deployment.
+A comprehensive freight management application built on Salesforce with a modern fullstack architecture. This project manages cargo shipments, customs documentation, and agent communications with complete data modeling, automation, Apex, UI components, AI integration, and deployment capabilities.
+
+## 🚀 Project Overview
+
+This is a complete Salesforce solution with backend API and frontend application for Intergalactic Freight & Trade Corp., demonstrating mastery across the entire Salesforce platform and modern web development.
+
+## 📁 Project Structure
+
+```
+salesforce-intergalactic-freight-app/
+├── force-app/                  # Salesforce metadata
+│   └── main/default/
+│       ├── objects/            # Custom Objects: Agent, Cargo, Customs_Document, Shipment
+│       ├── classes/            # Apex Classes (6 controllers/validators)
+│       ├── triggers/           # Apex Triggers (2 automation triggers)
+│       ├── lwc/                # Lightning Web Components (7 components)
+│       ├── applications/       # Custom Salesforce Apps
+│       └── permissionsets/     # Permission Sets & Security
+├── backend/                    # Node.js API (To be created)
+├── frontend/                   # React Frontend (To be created)
+├── manifest/                   # Deployment manifests
+│   ├── package.xml
+│   ├── destructiveChanges.xml
+│   └── package-empty.xml
+├── clear-org.ps1              # Script to clear org metadata
+└── README.md
+```
 
 ## 1. Objective
 
-To build a fully functional Salesforce org that meets the complex operational needs of a freight and trade company, demonstrating mastery across the entire Salesforce platform.
+To build a fully functional Salesforce org integrated with modern fullstack technologies that meets the complex operational needs of a freight and trade company.
 
 ## 2. Core Features & Implementation
 

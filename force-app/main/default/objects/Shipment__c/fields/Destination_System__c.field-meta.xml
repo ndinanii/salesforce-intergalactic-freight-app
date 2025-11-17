@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Destination_System__c</fullName>
+    <description>The planetary system where the shipment will be delivered</description>
+    <label>Destination System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sol System (Earth)</fullName>
+                <default>false</default>
+                <label>Sol System (Earth)</label>
+            </value>
+            <value>
+                <fullName>Alpha Centauri</fullName>
+                <default>false</default>
+                <label>Alpha Centauri</label>
+            </value>
+            <value>
+                <fullName>Proxima Centauri</fullName>
+                <default>false</default>
+                <label>Proxima Centauri</label>
+            </value>
+            <value>
+                <fullName>Sirius System</fullName>
+                <default>false</default>
+                <label>Sirius System</label>
+            </value>
+            <value>
+                <fullName>Barnard&apos;s Star</fullName>
+                <default>false</default>
+                <label>Barnard&apos;s Star</label>
+            </value>
+            <value>
+                <fullName>Wolf 359</fullName>
+                <default>false</default>
+                <label>Wolf 359</label>
+            </value>
+            <value>
+                <fullName>Tau Ceti</fullName>
+                <default>false</default>
+                <label>Tau Ceti</label>
+            </value>
+            <value>
+                <fullName>Epsilon Eridani</fullName>
+                <default>false</default>
+                <label>Epsilon Eridani</label>
+            </value>
+            <value>
+                <fullName>Kepler-442 System</fullName>
+                <default>false</default>
+                <label>Kepler-442 System</label>
+            </value>
+            <value>
+                <fullName>TRAPPIST-1 System</fullName>
+                <default>false</default>
+                <label>TRAPPIST-1 System</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,52 @@
+.shipment-card {
+    background-color: #ffffff;
+    border-left: 4px solid #A6FFCB;
+    transition: all 0.2s ease-in-out;
+}
+
+.shipment-card:hover {
+    background-color: #f9fffe;
+    border-left-color: #6FFFA0;
+    box-shadow: 0 2px 4px rgba(166, 255, 203, 0.2);
+}
+
+.view-button {
+    color: #A6FFCB;
+}
+
+.view-button:hover {
+    color: #6FFFA0;
+}
+
+.view-all-button {
+    color: #A6FFCB;
+}
+
+.empty-icon {
+    opacity: 0.3;
+}
+
+.slds-badge.slds-theme_warning {
+    background-color: #FFC168;
+    color: #080707;
+}
+
+.slds-badge.slds-theme_info {
+    background-color: #A6FFCB;
+    color: #080707;
+}
+
+.slds-badge.slds-theme_success {
+    background-color: #4BCA81;
+    color: #ffffff;
+}
+
+.slds-badge.slds-theme_error {
+    background-color: #EA001E;
+    color: #ffffff;
+}
+
+.slds-badge.slds-theme_alert-texture {
+    background-color: #FFB75D;
+    color: #080707;
+}

@@ -1,0 +1,128 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters">
+        <!-- Page Header -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <div class="slds-page-header">
+                <div class="slds-page-header__row">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-custom-custom96">
+                                    <lightning-icon icon-name="custom:custom96" size="medium"></lightning-icon>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span class="slds-page-header__title slds-truncate">Operations Manager Dashboard</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <p class="slds-page-header__name-meta">Team oversight and performance monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-page-header__col-actions">
+                        <lightning-button 
+                            label="View Reports" 
+                            icon-name="standard:reports"
+                            onclick={handleViewReports}
+                            class="view-reports-button">
+                        </lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Metrics -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <div class="slds-grid slds-wrap slds-gutters_small">
+                <!-- Total Shipments -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper total-metric">
+                            <lightning-icon icon-name="standard:orders" size="small" alternative-text="Total"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{totalShipments}</div>
+                            <div class="metric-label">Total Shipments</div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Active Shipments -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper active-metric">
+                            <lightning-icon icon-name="standard:shipment" size="small" alternative-text="Active"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{activeShipments}</div>
+                            <div class="metric-label">In Transit</div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pending Review -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper pending-metric">
+                            <lightning-icon icon-name="standard:approval" size="small" alternative-text="Pending"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{pendingReview}</div>
+                            <div class="metric-label">Pending Review</div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Delivered This Month -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper delivered-metric">
+                            <lightning-icon icon-name="standard:thanks" size="small" alternative-text="Delivered"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{deliveredThisMonth}</div>
+                            <div class="metric-label">Delivered (Month)</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Cards -->
+        <template for:each={navigationCards} for:item="card">
+            <div key={card.id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <article class="navigation-card slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container">
+                                    <lightning-icon icon-name={card.icon} size="small"></lightning-icon>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <span class="slds-truncate">{card.title}</span>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-text-body_regular">{card.description}</p>
+                    </div>
+                    <footer class="slds-card__footer">
+                        <button 
+                            class="slds-button slds-button_brand custom-brand-button slds-button_stretch"
+                            data-object={card.objectApiName}
+                            onclick={handleNavigate}>
+                            Manage {card.title}
+                        </button>
+                    </footer>
+                </article>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,47 @@
+.THIS .assignment-section {
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 0.25rem;
+}
+
+.THIS .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #A6FFCB;
+}
+
+.THIS .shipment-details,
+.THIS .cargo-details {
+    border-left: 3px solid #A6FFCB;
+}
+
+.THIS .assign-button {
+    background-color: #A6FFCB;
+    border-color: #A6FFCB;
+    color: #001a0d;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    min-width: 200px;
+}
+
+.THIS .assign-button:hover {
+    background-color: #8FFFB8;
+    border-color: #8FFFB8;
+}
+
+.THIS .assign-button:active {
+    background-color: #6FFFA0;
+    border-color: #6FFFA0;
+}
+
+.THIS .slds-theme_success {
+    background-color: #A6FFCB;
+    color: #001a0d;
+}
+
+.THIS lightning-select {
+    --slds-c-select-color-border-focus: #A6FFCB;
+}

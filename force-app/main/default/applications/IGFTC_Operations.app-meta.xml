@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#A6FFCB</headerColor>
+        <logo>IGFTC_Operations</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>IGFTC Operations - Single source of truth for customer data, shipments, and logistics operations. For CEO, Developers, Architects, and System Administrators.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>IGFTC Operations</label>
+    <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
+    <tabs>standard-home</tabs>
+    <tabs>Shipment__c</tabs>
+    <tabs>Cargo__c</tabs>
+    <tabs>Customs_Document__c</tabs>
+    <tabs>Agent__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-Case</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>ShipmentSummary</tabs>
+    <tabs>RealtimeTracking</tabs>
+    <tabs>QuickCargoAssignment</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

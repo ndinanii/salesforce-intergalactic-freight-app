@@ -1,0 +1,117 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters">
+        <!-- Page Header -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <div class="slds-page-header">
+                <div class="slds-page-header__row">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-custom-custom18">
+                                    <lightning-icon icon-name="custom:custom18" size="medium"></lightning-icon>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span class="slds-page-header__title slds-truncate">Freight Agent Home</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <p class="slds-page-header__name-meta">Welcome to your IFTC workspace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Metrics -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <div class="slds-grid slds-wrap slds-gutters_small">
+                <!-- My Shipments -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper my-shipments-metric">
+                            <lightning-icon icon-name="custom:custom18" size="small" alternative-text="Shipments"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{myShipmentsCount}</div>
+                            <div class="metric-label">My Shipments</div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cargo Items -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper cargo-metric">
+                            <lightning-icon icon-name="custom:custom48" size="small" alternative-text="Cargo"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{cargoCount}</div>
+                            <div class="metric-label">Cargo Items</div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Customs Documents -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <article class="metric-card slds-box slds-box_x-small">
+                        <div class="metric-icon-wrapper customs-metric">
+                            <lightning-icon icon-name="custom:custom85" size="small" alternative-text="Customs"></lightning-icon>
+                        </div>
+                        <div class="slds-text-align_center">
+                            <div class="metric-value">{customsCount}</div>
+                            <div class="metric-label">Customs Documents</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Component -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <c-quick-actions></c-quick-actions>
+        </div>
+
+        <!-- Recent Shipments Component -->
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <c-recent-shipments></c-recent-shipments>
+        </div>
+
+        <!-- Navigation Cards -->
+        <template for:each={navigationCards} for:item="card">
+            <div key={card.id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <article class="navigation-card slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container">
+                                    <lightning-icon icon-name={card.icon} size="small"></lightning-icon>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <span class="slds-truncate">{card.title}</span>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-text-body_regular">{card.description}</p>
+                    </div>
+                    <footer class="slds-card__footer">
+                        <button 
+                            class="slds-button slds-button_brand custom-brand-button slds-button_stretch"
+                            data-object={card.objectApiName}
+                            onclick={handleNavigate}>
+                            View All {card.title}
+                        </button>
+                    </footer>
+                </article>
+            </div>
+        </template>
+    </div>
+</template>

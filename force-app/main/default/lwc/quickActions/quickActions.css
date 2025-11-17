@@ -1,0 +1,29 @@
+.action-button {
+    background-color: #ffffff;
+    border: 2px solid #A6FFCB;
+    color: #080707;
+    padding: 1rem;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 0.5rem;
+}
+
+.action-button:hover {
+    background-color: #A6FFCB;
+    border-color: #8FFFB8;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(166, 255, 203, 0.3);
+}
+
+.action-button:active {
+    background-color: #8FFFB8;
+    transform: scale(0.98);
+}
+
+.action-icon {
+    color: #A6FFCB;
+}
+
+.action-button:hover .action-icon {
+    color: #080707;
+}
