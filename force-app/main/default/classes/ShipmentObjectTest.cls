@@ -82,7 +82,14 @@ private class ShipmentObjectTest {
         Account acc = [SELECT Id FROM Account LIMIT 1];
         Contact con = [SELECT Id FROM Contact LIMIT 1];
         Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
-        User currentUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
+        
+        // Create Agent for Master-Detail relationship
+        Agent__c agent = new Agent__c(
+            Name = 'Test Agent',
+            Region__c = 'Alpha Quadrant',
+            Active__c = true
+        );
+        insert agent;
         
         Shipment__c shipment = new Shipment__c(
             Origin_Planet__c = 'Venus',
@@ -97,7 +104,7 @@ private class ShipmentObjectTest {
             Account__c = acc.Id,
             Contact__c = con.Id,
             Opportunity__c = opp.Id,
-            Assigned_Agent__c = currentUser.Id
+            Assigned_Agent__c = agent.Id
         );
         
         // Act
@@ -126,7 +133,7 @@ private class ShipmentObjectTest {
         System.assertEquals(acc.Id, insertedShipment.Account__c, 'Account relationship should be set');
         System.assertEquals(con.Id, insertedShipment.Contact__c, 'Contact relationship should be set');
         System.assertEquals(opp.Id, insertedShipment.Opportunity__c, 'Opportunity relationship should be set');
-        System.assertEquals(currentUser.Id, insertedShipment.Assigned_Agent__c, 'Agent should be assigned');
+        System.assertEquals(agent.Id, insertedShipment.Assigned_Agent__c, 'Agent should be assigned');
     }
     
     /**

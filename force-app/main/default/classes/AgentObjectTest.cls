@@ -266,4 +266,99 @@ private class AgentObjectTest {
         System.assertEquals('Alpha Region Agent', alphaAgents[0].Name);
         System.assertEquals(10, alphaAgents[0].Max_Concurrent_Shipments__c);
     }
+    
+    /**
+     * Test Current_Shipment_Count__c rollup summary field
+     */
+    @isTest
+    static void testCurrentShipmentCountRollup() {
+        // Create test agent
+        Agent__c agent = new Agent__c(
+            Name = 'Test Agent',
+            Region__c = 'Alpha Quadrant',
+            Active__c = true,
+            Max_Concurrent_Shipments__c = 20
+        );
+        insert agent;
+        
+        // Create test shipments
+        List<Shipment__c> shipments = new List<Shipment__c>{
+            new Shipment__c(
+                Assigned_Agent__c = agent.Id,
+                Origin_Planet__c = 'Earth',
+                Destination_Planet__c = 'Mars',
+                Status__c = 'New',
+                Shipping_Method__c = 'Cargo Freighter'
+            ),
+            new Shipment__c(
+                Assigned_Agent__c = agent.Id,
+                Origin_Planet__c = 'Venus',
+                Destination_Planet__c = 'Jupiter',
+                Status__c = 'In Transit',
+                Shipping_Method__c = 'Hyperspace Express'
+            ),
+            new Shipment__c(
+                Assigned_Agent__c = agent.Id,
+                Origin_Planet__c = 'Mars',
+                Destination_Planet__c = 'Saturn',
+                Status__c = 'New',
+                Shipping_Method__c = 'Standard Warp'
+            )
+        };
+        
+        Test.startTest();
+        insert shipments;
+        Test.stopTest();
+        
+        // Verify rollup count
+        Agent__c agentWithCount = [
+            SELECT Current_Shipment_Count__c
+            FROM Agent__c
+            WHERE Id = :agent.Id
+        ];
+        
+        System.assertEquals(3, agentWithCount.Current_Shipment_Count__c, 
+                          'Should have 3 shipments assigned');
+    }
+    
+    /**
+     * Test rollup summary recalculates when shipment deleted
+     */
+    @isTest
+    static void testRollupRecalculatesOnShipmentDelete() {
+        // Create test agent
+        Agent__c agent = new Agent__c(
+            Name = 'Test Agent 2',
+            Region__c = 'Beta Quadrant',
+            Active__c = true
+        );
+        insert agent;
+        
+        // Create 5 shipments
+        List<Shipment__c> shipments = new List<Shipment__c>();
+        for (Integer i = 0; i < 5; i++) {
+            shipments.add(new Shipment__c(
+                Assigned_Agent__c = agent.Id,
+                Origin_Planet__c = 'Planet ' + i,
+                Destination_Planet__c = 'Destination ' + i,
+                Status__c = 'New',
+                Shipping_Method__c = 'Standard Warp'
+            ));
+        }
+        insert shipments;
+        
+        // Verify initial count
+        Agent__c agentBefore = [SELECT Current_Shipment_Count__c FROM Agent__c WHERE Id = :agent.Id];
+        System.assertEquals(5, agentBefore.Current_Shipment_Count__c, 'Should have 5 shipments');
+        
+        Test.startTest();
+        // Delete 2 shipments
+        delete new List<Shipment__c>{shipments[0], shipments[1]};
+        Test.stopTest();
+        
+        // Verify count updated
+        Agent__c agentAfter = [SELECT Current_Shipment_Count__c FROM Agent__c WHERE Id = :agent.Id];
+        System.assertEquals(3, agentAfter.Current_Shipment_Count__c, 
+                          'Should have 3 shipments after deletion');
+    }
 }
