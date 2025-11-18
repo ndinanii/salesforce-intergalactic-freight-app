@@ -1,0 +1,26 @@
+{
+  "orgName": "IFTC Development Scratch Org",
+  "edition": "Developer",
+  "features": ["EnableSetPasswordInApi", "Communities", "MultiCurrency"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "securitySettings": {
+      "sessionSettings": {
+        "forceRelogin": false
+      }
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    }
+  },
+  "hasSampleData": false,
+  "username": "admin@iftc-scratch.org"
+}
