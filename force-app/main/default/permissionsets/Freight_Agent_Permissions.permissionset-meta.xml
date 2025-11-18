@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>Agent_Console</application>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <classAccesses>
-        <apexClass>ShipmentController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <description>Freight Agent permissions for managing shipments, cargo, and customs documentation</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Freight Agent Permissions</label>
@@ -38,22 +30,6 @@
         <object>Contact</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <tabSettings>
-        <tab>Cargo__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Customs_Document__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Freight_Agent_Home</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Shipment__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>

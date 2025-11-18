@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>Operations_Manager</application>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <classAccesses>
-        <apexClass>OperationsManagerController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <description>Operations Manager permissions for oversight of agents, shipments, and business analytics</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Operations Manager Permissions</label>
@@ -47,26 +39,6 @@
         <object>Opportunity</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <tabSettings>
-        <tab>Agent__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Cargo__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Customs_Document__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Operations_Manager_Home</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Shipment__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
