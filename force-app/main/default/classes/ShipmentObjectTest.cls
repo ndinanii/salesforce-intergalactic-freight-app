@@ -333,4 +333,114 @@ private class ShipmentObjectTest {
         System.assertEquals(999999.99, inserted.Distance_Light_Years__c, 'Distance should handle large numbers');
         System.assertEquals(99.99, inserted.Discount__c, 'Discount percentage should be stored correctly');
     }
+    
+    /**
+     * @description Test rollup summary fields - Total_Weight__c and Cargo_Count__c
+     */
+    @isTest
+    static void testRollupSummaryFields() {
+        // Create parent Shipment
+        Shipment__c shipment = new Shipment__c(
+            Origin_Planet__c = 'Earth',
+            Destination_Planet__c = 'Mars',
+            Status__c = 'New'
+        );
+        insert shipment;
+        
+        // Verify initial rollup values are 0
+        Shipment__c initialShipment = [
+            SELECT Total_Weight__c, Cargo_Count__c 
+            FROM Shipment__c 
+            WHERE Id = :shipment.Id
+        ];
+        System.assertEquals(0, initialShipment.Total_Weight__c, 'Initial total weight should be 0');
+        System.assertEquals(0, initialShipment.Cargo_Count__c, 'Initial cargo count should be 0');
+        
+        // Create multiple cargo items
+        List<Cargo__c> cargoList = new List<Cargo__c>{
+            new Cargo__c(
+                Shipment__c = shipment.Id,
+                Category__c = 'Electronics',
+                Weight__c = 10.5
+            ),
+            new Cargo__c(
+                Shipment__c = shipment.Id,
+                Category__c = 'Perishables',
+                Weight__c = 25.75
+            ),
+            new Cargo__c(
+                Shipment__c = shipment.Id,
+                Category__c = 'Raw Materials',
+                Weight__c = 50.0
+            )
+        };
+        
+        Test.startTest();
+        insert cargoList;
+        Test.stopTest();
+        
+        // Verify rollup calculations
+        Shipment__c updatedShipment = [
+            SELECT Total_Weight__c, Cargo_Count__c 
+            FROM Shipment__c 
+            WHERE Id = :shipment.Id
+        ];
+        
+        System.assertEquals(86.25, updatedShipment.Total_Weight__c, 'Total weight should be sum of all cargo weights (10.5 + 25.75 + 50.0)');
+        System.assertEquals(3, updatedShipment.Cargo_Count__c, 'Cargo count should be 3');
+    }
+    
+    /**
+     * @description Test rollup summary updates when cargo is deleted
+     */
+    @isTest
+    static void testRollupSummaryOnCargoDelete() {
+        // Create parent Shipment
+        Shipment__c shipment = new Shipment__c(
+            Origin_Planet__c = 'Venus',
+            Destination_Planet__c = 'Jupiter',
+            Status__c = 'In Transit'
+        );
+        insert shipment;
+        
+        // Create cargo items
+        List<Cargo__c> cargoList = new List<Cargo__c>{
+            new Cargo__c(
+                Shipment__c = shipment.Id,
+                Category__c = 'Hazardous Materials',
+                Weight__c = 15.0
+            ),
+            new Cargo__c(
+                Shipment__c = shipment.Id,
+                Category__c = 'Manufactured Goods',
+                Weight__c = 35.0
+            )
+        };
+        insert cargoList;
+        
+        // Verify initial rollup
+        Shipment__c shipmentBefore = [
+            SELECT Total_Weight__c, Cargo_Count__c 
+            FROM Shipment__c 
+            WHERE Id = :shipment.Id
+        ];
+        System.assertEquals(50.0, shipmentBefore.Total_Weight__c, 'Initial total weight should be 50.0');
+        System.assertEquals(2, shipmentBefore.Cargo_Count__c, 'Initial cargo count should be 2');
+        
+        // Delete one cargo item
+        Test.startTest();
+        delete cargoList[0];
+        Test.stopTest();
+        
+        // Verify rollup recalculated
+        Shipment__c shipmentAfter = [
+            SELECT Total_Weight__c, Cargo_Count__c 
+            FROM Shipment__c 
+            WHERE Id = :shipment.Id
+        ];
+        
+        System.assertEquals(35.0, shipmentAfter.Total_Weight__c, 'Total weight should be updated to 35.0');
+        System.assertEquals(1, shipmentAfter.Cargo_Count__c, 'Cargo count should be updated to 1');
+    }
 }
+
