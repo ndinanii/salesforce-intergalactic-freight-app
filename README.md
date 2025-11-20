@@ -32,6 +32,45 @@ salesforce-intergalactic-freight-app/
 
 To build a fully functional Salesforce org integrated with modern fullstack technologies that meets the complex operational needs of a freight and trade company.
 
+---
+
+## 🎯 Engineering Philosophy: The Colt Protocol
+
+This project follows **The Colt Protocol** methodology, a systematic 6-stage approach to Salesforce development:
+
+### The 6-Stage Pipeline
+
+1. **Requirements Elicitation** - Define goals, personas, and Definition of Done (DoD)
+2. **User-Centric Design** - Strict adherence to Lightning Design System (SLDS)
+3. **Business Process Mapping** - Synchronous vs. Asynchronous processing decisions
+4. **Data Modeling & ERD** - Security-first schema design with OWD and sharing rules
+5. **Defining Testable Criteria** - Test-Driven Development (TDD) with 85%+ coverage
+6. **Clear Documentation** - ApexDoc standards and structured project artifacts
+
+### 📂 Project Documentation
+
+Comprehensive documentation following The Colt Protocol is available in the `_documentation/` folder:
+
+```
+_documentation/
+├── 00_Project_Brief/          # Project Charter & Stakeholder Register
+├── 01_Requirements/           # User Stories & Functional Specs
+├── 02_Design/                 # UX Wireframes, UI Mockups, SLDS Theme Map
+├── 03_Architecture/           # Process Flows, ERD, Security Matrix
+├── 04_Testing/                # Test Plan, Data Factory Spec, UAT Scripts
+└── 05_Manuals/                # Admin Guide & User Guide
+```
+
+### Salesforce Best Practices Applied
+
+- **Security First**: with sharing keywords in Apex, SOQL injection prevention
+- **Governor Limits**: Bulkified code, asynchronous processing for heavy operations
+- **SLDS Compliance**: All LWC components follow Lightning Design System
+- **Test Coverage**: 85%+ code coverage with meaningful assertions
+- **Documentation**: ApexDoc comments and structured project documentation
+
+---
+
 ## 2. Core Features & Implementation
 
 ### Section 1: Salesforce Fundamentals & Security
